@@ -1,0 +1,31 @@
+#include "stdafx.h"
+#include <iostream>
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	short qq[5] = { 3, 3, 3, 3, 5 };
+	short result = 0;
+	__asm {
+		mov ebx, 0
+		mov esi, 0
+		mov ecx, 5
+	loopstart: 
+		mov ax, qq[TYPE qq*esi]
+		test ax, 1
+		jp evenlabel
+		jnp continueloop
+	evenlabel: 
+		add ebx, 1	
+		jmp continueloop
+
+	continueloop:
+		add esi, 1 
+		loop loopstart
+	
+        mov result, bx
+	}
+	std::cout << result;
+	auto c = new char[];
+	scanf_s(c);
+	
+}
